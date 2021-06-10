@@ -12,6 +12,7 @@ exports.createRecipe = function createRecipe(req, res) {
 }
 
 
+
 exports.getRecipe = function getRecipe(request, response) {
     const recipe = ['1 кг муки', '3 шт яиц', '200г сахара', '200мл воды' ]
     
