@@ -54,11 +54,38 @@ news = news.filter(oneNews => oneNews.id !== req.params.newsId)
 }
 
 
-// const DB_News = [];
-// exports.addNews = function getNews(req, res) {
-//     const clientData = req.body;
-//     console.log(clientData)
+exports.updateOneNews = function (req, res) {
+    console.log(req.body);
+    console.log(req.params.id);
 
-//     DB_News.unshift(clientData);
-//     res.status(201).json(`Рецепт ${clientData.name} успешно создан`);
-// }
+    const existingNews = news.find((oneNews) => oneNews.id === req.params.id); 
+
+    if (!existingNews) {
+        return res.status(404).json('Новость не найдена');
+    }
+
+    const updatedNews = {
+        ...existingNews,
+        ...req.body,
+    };
+
+    news =  news.filter(n => n.id !== updatedNews.id);
+    news.push(updatedNews);
+
+
+    // console.log(updatedNews)
+    res.status(201).json(`Обновил новость: ${req.params.id}`);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
